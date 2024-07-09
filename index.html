@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Administrador de Productos</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">ABM</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/imagenes.html">Imagenes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/categorias.html">Categorias</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main class="mt-5 container">
+        <div class="text-center">
+            <h1>Administrador de Productos</h1>
+            <h5>A través de este portal podés gestionar todos los productos</h5>
+        </div>
+
+        <section class="mt-5">
+            <form id="agregarProductos" class="row g-3" novalidate>
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" name="nombre">
+                    <span class="mensaje-error" id="mensajeNombre"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" id="nombre" class="form-control" name="descripcion">
+                    <span class="mensaje-error" id="mensajeDescripcion"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="idCategoria" class="form-label">ID Categoria</label>
+                    <input type="text" id="idCategoria" class="form-control" name="idCategoria">
+                    <span class="mensaje-error" id="mensajeCategoria"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="precio" class="form-label">Precio</label>
+                    <input type="text" id="precio" class="form-control" name="precio">
+                    <span class="mensaje-error" id="mensajePrecio"></span>
+                </div>
+                <div class="col-md-12">
+                    <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
+                    <button type="submit" class="btn btn-success">Agregar Producto</button>
+                </div>
+            </form>
+            <div class="mt-5">
+                <h4>Exportar Tabla</h4>
+                <button class="btn btn-primary" id="btnIndex">JSON Index</button>
+                <button type="submit" class="btn btn-primary mx-3" id="btnDetalle">JSON Detalle</button>
+            </div>
+        </section>
+        <section class="my-5">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th class="p-2">ID</th>
+                        <th class="p-2">Nombre</th>
+                        <th class="p-2">Descripcion</th> <!--!Ver tema del overflow aca-->
+                        <th class="p-2">ID Categoria</th>
+                        <th class="p-2">Precio</th>
+                        <th class="p-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTableProductos" class="text-center">
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/get_productos.js"></script>
+    <script src="js/post_productos.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
