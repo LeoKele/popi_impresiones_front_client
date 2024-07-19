@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/7a7df7520d.js" crossorigin="anonymous"></script>
     <title>Administrador de Productos</title>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">ABM</a>
+              <a class="navbar-brand" href="#">Productos</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -38,13 +40,14 @@
         <section class="mt-5">
             <form id="agregarProductos" class="row g-3" novalidate>
                 <div class="col-md-6">
+                    <input class="form-control d-none" type="text" name="id" id="id">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" id="nombre" class="form-control" name="nombre">
                     <span class="mensaje-error" id="mensajeNombre"></span>
                 </div>
                 <div class="col-md-6">
                     <label for="descripcion" class="form-label">Descripcion</label>
-                    <input type="text" id="nombre" class="form-control" name="descripcion">
+                    <input type="text" id="descripcion" class="form-control" name="descripcion">
                     <span class="mensaje-error" id="mensajeDescripcion"></span>
                 </div>
                 <div class="col-md-6">
@@ -60,6 +63,7 @@
                 <div class="col-md-12">
                     <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
                     <button type="submit" class="btn btn-success">Agregar Producto</button>
+                    <p class="d-none mt-2" id="indicador">Modificando...</p>
                 </div>
             </form>
             <div class="mt-5">
@@ -69,12 +73,12 @@
             </div>
         </section>
         <section class="my-5">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
                         <th class="p-2">ID</th>
                         <th class="p-2">Nombre</th>
-                        <th class="p-2">Descripcion</th> <!--!Ver tema del overflow aca-->
+                        <th class="p-2">Descripcion</th> 
                         <th class="p-2">ID Categoria</th>
                         <th class="p-2">Precio</th>
                         <th class="p-2">Acciones</th>
@@ -86,9 +90,29 @@
             </table>
         </section>
     </main>
+    <button class="scroll-top-button btn-submit" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+    <script>
+        // Función para hacer scroll al principio
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    
+        // Mostrar u ocultar el botón según el scroll
+        window.addEventListener('scroll', function() {
+            const button = document.querySelector('.scroll-top-button');
+            if (window.scrollY > 200) {
+                button.classList.add('show-scroll-button');
+            } else {
+                button.classList.remove('show-scroll-button');
+            }
+        });
+      </script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/get_productos.js"></script>
-    <script src="js/post_productos.js"></script>
+    <script src="js/get_delete_modifcar_productos.js"></script>
+    <script src="js/post_put_productos.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

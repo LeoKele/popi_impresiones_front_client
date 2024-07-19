@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/7a7df7520d.js" crossorigin="anonymous"></script>
+    <title>Administrador de Imagenes</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="../index.html">Productos</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Imagenes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="categorias.html">Categorias</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    <main class="mt-5 container">
+        <div class="text-center">
+            <h1>Administrador de Imagenes</h1>
+            <h5>A través de este portal podés gestionar tus imagenes</h5>
+        </div>
+
+        <section class="mt-5">
+            <form id="agregarImagenes" class="row g-3" novalidate>
+                <div class="col-md-6">
+                    <input class="form-control d-none" type="text" name="id" id="id">
+                    <label for="idProducto" class="form-label">ID producto</label>
+                    <input type="text" id="idProducto" class="form-control" name="idProducto">
+                    <span class="mensaje-error" id="mensajeId"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="ruta" class="form-label">Ruta de Imágen</label>
+                    <input type="text" id="ruta" class="form-control" name="ruta">
+                    <span class="mensaje-error" id="mensajeRuta"></span>
+                </div>
+                <div class="col-md-12">
+                    <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
+                    <button type="submit" class="btn btn-success">Agregar Imagen</button>
+                    <p class="d-none mt-2" id="indicador">Modificando...</p>
+                    
+                </div>
+            </form>
+            <!-- <div class="mt-5">
+                <h4>Exportar Tabla</h4>
+                <button class="btn btn-primary" id="btnIndex">JSON Index</button>
+                <button type="submit" class="btn btn-primary mx-3" id="btnDetalle">JSON Detalle</button>
+            </div> -->
+        </section>
+        <section class="my-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th class="p-2">ID Producto</th>
+                        <th class="p-2">Ruta Imágen</th>
+                        <th class="p-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyTableImagenes" class="text-center">
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <button class="scroll-top-button btn-submit" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+    <script>
+        // Función para hacer scroll al principio
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    
+        // Mostrar u ocultar el botón según el scroll
+        window.addEventListener('scroll', function() {
+            const button = document.querySelector('.scroll-top-button');
+            if (window.scrollY > 200) {
+                button.classList.add('show-scroll-button');
+            } else {
+                button.classList.remove('show-scroll-button');
+            }
+        });
+      </script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/get_delete_modificar_imagenes.js"></script>
+    <script src="../js/post_put_imagenes.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
