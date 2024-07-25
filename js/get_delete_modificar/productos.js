@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded',async()=>{
   //* Datos API
-  const API_URL = "http://localhost:8080/api/productos/admin";
+  const API_URL = "http://localhost:8080/api/productos/admin?listado=1";
   const options = {
     method: "GET",
     headers: {
@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
     tdPrecio.classList.add("p-2");
     tdPrecio.textContent = `$${producto.precio}`;
 
+    const tdListado = document.createElement("td");
+    tdListado.classList.add("d-none");
+    tdListado.textContent = producto.listado;
+
     //Añadimos los botones de accion
     const tdAccion = document.createElement("td");
     tdAccion.classList.add("p-2");
@@ -60,10 +64,12 @@ document.addEventListener('DOMContentLoaded',async()=>{
     tr.appendChild(tdDescripcion);
     tr.appendChild(tdIdCategoria);
     tr.appendChild(tdPrecio);
+    tr.appendChild(tdListado);
     tr.appendChild(tdAccion);
     //Añadimos el tr al tbody
     tbody.appendChild(tr);
   });
+
   //btns para descargar el json
   document.getElementById('btnIndex').addEventListener('click', async() =>{
     const response = await fetch('http://localhost:8080/api/productos/index',options);
@@ -160,7 +166,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
           indicador.classList.remove("d-none");
 
           try {
-              const response = await fetch(`http://localhost:8080/api/productos/admin?id=${productoId}`);
+              const response = await fetch(`http://localhost:8080/api/productos/admin?id=${productoId}&listado=1`);
               if (!response.ok) {
                   // lanzo una excepcion en caso de que no funcione el fetch, esto se ve en la consola
                   throw new Error('Error al obtener los datos del producto');
@@ -174,6 +180,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
               document.getElementById('descripcion').value = productoUnico.descripcion;
               document.getElementById('idCategoria').value = productoUnico.idCategoria;
               document.getElementById('precio').value = productoUnico.precio;
+              document.getElementById('listado').value = productoUnico.listado;
             
               // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola
           } catch (error) {

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7a7df7520d.js" crossorigin="anonymous"></script>
-    <title>Popi Client | Administrador de Imagenes</title>
+    <title>Popi Client | Administrador de Ventas</title>
 </head>
 <body>
     <header>
@@ -21,7 +21,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Imagenes</a>
+                    <a class="nav-link" href="imagenes.html">Imagenes</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="categorias.html">Categorias</a>
@@ -33,7 +33,7 @@
                     <a class="nav-link" href="stock.html">Stock</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="ventas.html">Ventas</a>
+                    <a class="nav-link active" href="#">Ventas</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="gastos.html">Gastos</a>
@@ -45,48 +45,57 @@
     </header>
     <main class="mt-5 container">
         <div class="text-center">
-            <h1>Administrador de Imagenes</h1>
-            <h5>A través de este portal podés gestionar tus imagenes</h5>
+            <h1>Administrador de Ventas</h1>
+            <h5>A través de este portal podés gestionar tus ventas</h5>
         </div>
 
         <section class="mt-5">
-            <form id="agregarImagenes" class="row g-3" novalidate>
+            <form id="agregarVentas" class="row g-3" novalidate>
                 <div class="col-md-6">
                     <input class="form-control d-none" type="text" name="id" id="id">
-                    <label for="idProducto" class="form-label">ID producto</label>
-                    <input type="text" id="idProducto" class="form-control" name="idProducto">
-                    <span class="text-secondary">Recordá que el id debe ser de un producto existente.</span><br>
-                    <span class="mensaje-error" id="mensajeId"></span>
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" id="fecha" class="form-control" name="fecha">
+                    <span class="mensaje-error" id="mensajeFecha"></span>
                 </div>
                 <div class="col-md-6">
-                    <label for="ruta" class="form-label">Ruta de Imágen</label>
-                    <input type="text" id="ruta" class="form-control" name="ruta">
-                    <span class="text-secondary">La ruta debe ser "id_num.png", con 'num' de 1 en adelante.</span><br>
-                    <span class="mensaje-error" id="mensajeRuta"></span>
+                    <label for="idProducto" class="form-label">ID Producto</label>
+                    <input type="text" id="idProducto" class="form-control" name="idProducto">
+                    <span class="text-secondary">Recordá que el id debe ser de un producto existente.</span><br>
+                    <span class="mensaje-error" id="mensajeIdProducto"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="text" id="cantidad" class="form-control" name="cantidad">
+                    <span class="mensaje-error" id="mensajeCantidad"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="precio" class="form-label">Precio Unitario</label>
+                    <input type="text" id="precio" class="form-control" name="precio">
+                    <span class="mensaje-error" id="mensajePrecio"></span>
                 </div>
                 <div class="col-md-12">
                     <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
-                    <button type="submit" class="btn btn-success">Agregar Imagen</button>
+                    <button type="submit" class="btn btn-success">Agregar Venta</button>
                     <p class="d-none mt-2" id="indicador">Modificando...</p>
-                    
                 </div>
             </form>
-            <!-- <div class="mt-5">
-                <h4>Exportar Tabla</h4>
-                <button class="btn btn-primary" id="btnIndex">JSON Index</button>
-                <button type="submit" class="btn btn-primary mx-3" id="btnDetalle">JSON Detalle</button>
-            </div> -->
         </section>
         <section class="my-5">
             <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
+                        <th class="d-none">ID Venta</th>
+                        <th class="p-2">Fecha Venta</th>
                         <th class="p-2">ID Producto</th>
-                        <th class="p-2">Ruta Imágen</th>
+                        <th class="p-2">Nombre</th>
+                        <th class="p-2">Cantidad</th> 
+                        <th class="p-2">Precio Unitario</th>
+                        <th class="p-2">Total</th>
+                        <th class="p-2">Ganancia</th>
                         <th class="p-2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="bodyTableImagenes" class="text-center">
+                <tbody id="bodyTableVentas" class="text-center">
 
                 </tbody>
             </table>
@@ -113,8 +122,8 @@
         });
       </script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/get_delete_modificar/imagenes.js"></script>
-    <script src="../js/post_put/imagenes.js"></script>
+    <script src="../js/get_delete_modificar/ventas.js"></script>
+    <script src="../js/post_put/ventas.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

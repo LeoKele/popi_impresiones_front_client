@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/7a7df7520d.js" crossorigin="anonymous"></script>
-    <title>Administrador de Categorias</title>
+    <title>Popi Client | Administrador de Categorias</title>
 </head>
 <body>
     <header>
@@ -24,7 +24,19 @@
                     <a class="nav-link" href="imagenes.html">Imagenes</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Categorias</a>
+                    <a class="nav-link active" href="#">Categorias</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="otrosProductos.html">Otros Productos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="stock.html">Stock</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="ventas.html">Ventas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="gastos.html">Gastos</a>
                   </li>
                 </ul>
               </div>
@@ -46,7 +58,7 @@
                 </div> -->
                 <div class="col-md-12">
                     <input class="form-control d-none" type="text" name="id" id="id">
-                    <label for="descripcion" class="form-label">Descripcion Categoria</label>
+                    <label for="descripcion" class="form-label">Nombre Categoria</label>
                     <input type="text" id="descripcion" class="form-control" name="descripcion">
                     <span class="mensaje-error" id="mensajeDescripcion"></span>
                 </div>
@@ -67,7 +79,7 @@
                 <thead>
                     <tr class="text-center">
                         <th class="p-2">ID Categoria</th>
-                        <th class="p-2">Descripcion Categoria</th>
+                        <th class="p-2">Nombre Categoria</th>
                         <th class="p-2">Acciones</th>
                     </tr>
                 </thead>
@@ -98,8 +110,8 @@
         });
       </script>
     <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/get_delete_modificar_categorias.js"></script>
-    <script src="../js/post_put_categorias.js"></script>
+    <script src="../js/get_delete_modificar/categorias.js"></script>
+    <script src="../js/post_put/categorias.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

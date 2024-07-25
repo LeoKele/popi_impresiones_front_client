@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
                   text: "Por favor, intente de nuevo más tarde",
                   icon: "error",
                 });
-                throw new Error('Error al la imagen');
+                throw new Error('Error al eliminar la imagen');
               }
     
               const data = await response.json();
