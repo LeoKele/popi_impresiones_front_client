@@ -28,12 +28,12 @@ formNuevoGasto.addEventListener("submit", async (event) => {
   const descripcionValido = stringVacio(descripcion);
   const costoValido = esFloat(costo);
 
-
+  console.log(descripcionValido);
   if (fechaValido || descripcionValido || !costoValido) {
     errorFecha.textContent = !fechaValido
       ? ""
       : "Por favor, completa este campo.";
-    errorDescripcion.textContent = descripcionValido
+    errorDescripcion.textContent = !descripcionValido
       ? ""
       : "Por favor, completa este campo.";
     errorCosto.textContent = costoValido

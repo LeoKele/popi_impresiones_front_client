@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
     tdPrecio.classList.add("p-2");
     tdPrecio.textContent = `$${producto.precio}`;
 
+    const tdCosto = document.createElement("td");
+    tdCosto.classList.add("p-2");
+    tdCosto.textContent = `$${producto.costo}`;
+
     const tdListado = document.createElement("td");
     tdListado.classList.add("d-none");
     tdListado.textContent = producto.listado;
@@ -64,6 +68,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
     tr.appendChild(tdDescripcion);
     tr.appendChild(tdIdCategoria);
     tr.appendChild(tdPrecio);
+    tr.appendChild(tdCosto);
     tr.appendChild(tdListado);
     tr.appendChild(tdAccion);
     //Añadimos el tr al tbody
@@ -180,6 +185,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
               document.getElementById('descripcion').value = productoUnico.descripcion;
               document.getElementById('idCategoria').value = productoUnico.idCategoria;
               document.getElementById('precio').value = productoUnico.precio;
+              document.getElementById('costo').value = productoUnico.costo
               document.getElementById('listado').value = productoUnico.listado;
             
               // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola

@@ -48,6 +48,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
               tdPrecio.classList.add("p-2");
               tdPrecio.textContent = `$${producto.precio}`;
 
+              const tdCosto = document.createElement("td");
+              tdCosto.classList.add("p-2");
+              tdCosto.textContent = `$${producto.costo}`;
+
               const tdListado = document.createElement("td");
               tdListado.classList.add("d-none");
               tdListado.textContent = producto.listado;
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
               tr.appendChild(tdDescripcion);
               tr.appendChild(tdIdCategoria);
               tr.appendChild(tdPrecio);
+              tr.appendChild(tdCosto);
               tr.appendChild(tdListado);
               tr.appendChild(tdAccion);
               //Añadimos el tr al tbody
@@ -97,42 +102,6 @@ document.addEventListener('DOMContentLoaded',async()=>{
         console.error('Error al hacer la solicitud:', error);
     }
     
-
-
-  
-    //btns para descargar el json
-    document.getElementById('btnIndex').addEventListener('click', async() =>{
-      const response = await fetch('http://localhost:8080/api/productos/index',options);
-      const data = await response.json();
-      const productos = data;
-  
-      const blob = new Blob([JSON.stringify(productos)],{type:'application/json'});
-      const url = URL.createObjectURL(blob);
-        
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'productos_index.json';
-      link.click();
-      
-      URL.revokeObjectURL(url);
-    });
-  
-    document.getElementById('btnDetalle').addEventListener('click', async() =>{
-      const response = await fetch('http://localhost:8080/api/productos/detalle',options);
-      const data = await response.json();
-      const productos = data;
-  
-      const blob = new Blob([JSON.stringify(productos)],{type:'application/json'});
-      const url = URL.createObjectURL(blob);
-        
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'productos_detalle.json';
-      link.click();
-      
-      URL.revokeObjectURL(url);
-    });
-  
     document.querySelectorAll('.btnEliminar').forEach(button => {
       button.addEventListener('click', async (event) => {
         const row = event.target.closest('tr');
@@ -210,6 +179,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
                 document.getElementById('descripcion').value = productoUnico.descripcion;
                 document.getElementById('idCategoria').value = productoUnico.idCategoria;
                 document.getElementById('precio').value = productoUnico.precio;
+                document.getElementById('costo').value = productoUnico.costo
                 document.getElementById('listado').value = productoUnico.listado;
               
                 // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola

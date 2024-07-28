@@ -8,6 +8,7 @@ formNuevoProducto.addEventListener("submit", async (event) => {
   var errorDescripcion = document.getElementById("mensajeDescripcion");
   var errorCategoria = document.getElementById("mensajeCategoria");
   var errorPrecio = document.getElementById("mensajePrecio");
+  var errorCosto = document.getElementById("mensajeCosto");
   var errorListado = document.getElementById("mensajeListado");
 
   function limpiarMensajes() {
@@ -15,6 +16,7 @@ formNuevoProducto.addEventListener("submit", async (event) => {
     errorDescripcion.textContent = "";
     errorCategoria.textContent = "";
     errorPrecio.textContent = "";
+    errorCosto.textContent = "";
     errorListado.textContent = "";
   }
   limpiarMensajes();
@@ -28,16 +30,19 @@ formNuevoProducto.addEventListener("submit", async (event) => {
   const descripcion = formData.get("descripcion");
   const idCategoria = formData.get("idCategoria");
   const precio = formData.get("precio");
+  const costo = formData.get("costo");
   const listado = formData.get("listado");
+  
 
   const nombreValido = stringVacio(nombre);
   const descripcionValido = stringVacio(descripcion);
   const precioValido = esFloat(precio);
   const categoriaValido = esInt(idCategoria);
   const listadoValido = esTiny(listado);
+  const costoValido = esFloat(costo);
 
 
-  if (nombreValido || descripcionValido || !categoriaValido || !precioValido || !listadoValido) {
+  if (nombreValido || descripcionValido || !categoriaValido || !precioValido || !costoValido || !listadoValido) {
     errorNombre.textContent = !nombreValido
       ? ""
       : "Por favor, completa este campo.";
@@ -50,6 +55,9 @@ formNuevoProducto.addEventListener("submit", async (event) => {
     errorPrecio.textContent = precioValido
       ? ""
       : "Por favor, ingrese un número válido.";
+    errorCosto.textContent = costoValido
+    ? ""
+    : "Por favor, ingrese un número válido.";
     errorListado.textContent = listadoValido
       ? ""
       : "Por favor, ingrese un número válido"
@@ -66,6 +74,7 @@ formNuevoProducto.addEventListener("submit", async (event) => {
     descripcion: descripcion,
     idCategoria: idCategoria,
     precio: precio,
+    costo: costo,
     listado: listado
   };
 
