@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
     tdDescripcion.classList.add("p-2");
     tdDescripcion.textContent = categoria.descripcion;
 
+    const tdListado = document.createElement("td");
+    tdListado.classList.add("p-2");
+    tdListado.textContent = categoria.listado;
+
     //Añadimos los botones de accion
     const tdAccion = document.createElement("td");
     tdAccion.classList.add("p-2");
@@ -46,6 +50,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
     tr.appendChild(tdId);
     tr.appendChild(tdDescripcion);
+    tr.appendChild(tdListado);
     tr.appendChild(tdAccion);
 
     tbody.appendChild(tr);
@@ -121,10 +126,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
             }
             const data = await response.json();
             const categoriaUnica = data[0];
-            console.log(data);
             // son los id del formulario, como son unicos e irrepetibles dentro del html, sabe a quien insertarles los valores
             document.getElementById('id').value = categoriaUnica.id;
             document.getElementById('descripcion').value = categoriaUnica.descripcion;
+            document.getElementById('listado').value = categoriaUnica.listado;
 
           
             // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola

@@ -108,6 +108,23 @@ document.addEventListener('DOMContentLoaded',async()=>{
     URL.revokeObjectURL(url);
   });
 
+  
+  document.getElementById('btnCategoria').addEventListener('click', async() =>{
+    const response = await fetch('http://localhost:8080/api/productos/categorias',options);
+    const data = await response.json();
+    const categorias = data;
+
+    const blob = new Blob([JSON.stringify(categorias)],{type:'application/json'});
+    const url = URL.createObjectURL(blob);
+      
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'categorias.json';
+    link.click();
+    
+    URL.revokeObjectURL(url);
+  });
+
   document.querySelectorAll('.btnEliminar').forEach(button => {
     button.addEventListener('click', async (event) => {
       const row = event.target.closest('tr');

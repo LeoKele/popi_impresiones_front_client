@@ -51,28 +51,24 @@
 
         <section class="mt-5">
             <form id="agregarCategorias" class="row g-3" novalidate>
-                <!-- <div class="col-md-6">
-                    <label for="id" class="form-label">ID Categoria</label>
-                    <input type="text" id="id" class="form-control" name="id">
-                    <span class="mensaje-error" id="mensajeId"></span>
-                </div> -->
-                <div class="col-md-12">
+                <div class="col-md-10">
                     <input class="form-control d-none" type="text" name="id" id="id">
                     <label for="descripcion" class="form-label">Nombre Categoria</label>
                     <input type="text" id="descripcion" class="form-control" name="descripcion">
                     <span class="mensaje-error" id="mensajeDescripcion"></span>
                 </div>
+                <div class="col-md-2">
+                  <label for="listado" class="form-label">Listado</label>
+                  <input type="text" id="listado" class="form-control" name="listado">
+                  <span class="text-secondary">Recordá que 0 es falso y 1 es verdadero</span><br>
+                  <span class="mensaje-error" id="mensajeListado"></span>
+              </div>
                 <div class="col-md-12">
                     <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
                     <button type="submit" class="btn btn-success">Agregar Categoria</button>
                     <p class="d-none mt-2" id="indicador">Modificando...</p>
                 </div>
             </form>
-            <!-- <div class="mt-5">
-                <h4>Exportar Tabla</h4>
-                <button class="btn btn-primary" id="btnIndex">JSON Index</button>
-                <button type="submit" class="btn btn-primary mx-3" id="btnDetalle">JSON Detalle</button>
-            </div> -->
         </section>
         <section class="my-5">
             <table class="table table-hover">
@@ -80,6 +76,7 @@
                     <tr class="text-center">
                         <th class="p-2">ID Categoria</th>
                         <th class="p-2">Nombre Categoria</th>
+                        <th class="p-2">Listado</th>
                         <th class="p-2">Acciones</th>
                     </tr>
                 </thead>

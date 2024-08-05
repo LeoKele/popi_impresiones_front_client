@@ -59,7 +59,7 @@ formNuevoProducto.addEventListener("submit", async (event) => {
     : "Por favor, ingrese un número válido.";
     errorListado.textContent = listadoValido
       ? ""
-      : "Por favor, ingrese un número válido"
+      : "Por favor, ingrese un número válido";
     return;
   }
 
