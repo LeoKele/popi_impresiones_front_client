@@ -52,31 +52,6 @@
             <h5>A través de este portal podés gestionar tus gastos</h5>
         </div>
 
-        <section class="mt-5">
-            <form id="agregarGastos" class="row g-3" novalidate>
-                <div class="col-md-2">
-                    <input class="form-control d-none" type="text" name="id" id="id">
-                    <label for="fecha" class="form-label">Fecha</label>
-                    <input type="date" id="fecha" class="form-control" name="fecha">
-                    <span class="mensaje-error" id="mensajeFecha"></span>
-                </div>
-                <div class="col-md-10">
-                    <label for="descripcion" class="form-label">Descripcion</label>
-                    <input type="text" id="descripcion" class="form-control" name="descripcion">
-                    <span class="mensaje-error" id="mensajeDescripcion"></span>
-                </div>
-                <div class="col-md-6">
-                    <label for="costo" class="form-label">Costo</label>
-                    <input type="text" id="costo" class="form-control" name="costo">
-                    <span class="mensaje-error" id="mensajeCosto"></span>
-                </div>
-                <div class="col-md-12">
-                    <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
-                    <button type="submit" class="btn btn-success">Agregar Gasto</button>
-                    <p class="d-none mt-2" id="indicador">Modificando...</p>
-                </div>
-            </form>
-        </section>
         <section class="my-5">
             <table class="table table-hover">
                 <thead>
@@ -94,7 +69,43 @@
             </table>
         </section>
     </main>
+    <button class="add-product-button btn-success" id="btnAgregarGasto" data-bs-toggle="modal" type="button" data-bs-target="#modalGasto">Agregar Gasto</button>
     <button class="scroll-top-button btn-submit" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+    <div class="modal fade" id="modalGasto" tabindex="-1" aria-labelledby="modalGastoLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalGastoLabel">Agregar/Modificar Gasto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="agregarGastos" class="row g-3" novalidate>
+                        <div class="col-md-2">
+                            <input class="form-control d-none" type="text" name="id" id="id">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" id="fecha" class="form-control" name="fecha">
+                            <span class="mensaje-error" id="mensajeFecha"></span>
+                        </div>
+                        <div class="col-md-10">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" id="descripcion" class="form-control" name="descripcion">
+                            <span class="mensaje-error" id="mensajeDescripcion"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="costo" class="form-label">Costo</label>
+                            <input type="text" id="costo" class="form-control" name="costo">
+                            <span class="mensaje-error" id="mensajeCosto"></span>
+                        </div>
+                        <div class="col-md-12">
+                          <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
+                          <button type="submit" class="btn btn-success">Agregar Gasto</button>
+                          <p class="d-none mt-2" id="indicador">Modificando...</p>
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         // Función para hacer scroll al principio
         function scrollToTop() {

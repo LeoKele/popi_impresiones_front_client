@@ -1,5 +1,5 @@
-
 const formNuevoProducto = document.getElementById('agregarProductos');
+
 
 formNuevoProducto.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -146,8 +146,7 @@ formNuevoProducto.addEventListener("submit", async (event) => {
       text: "Por Favor, intente de nuevo más tarde",
       icon: "error",
     });
-  }
-});
+  }});
 
 
 

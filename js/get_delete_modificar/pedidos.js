@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const modalProducto = new bootstrap.Modal(document.getElementById('modalPedido'));
+
   //* Datos API
   const API_URL = "http://localhost:8080/api/pedidos";
   const options = {
@@ -182,6 +184,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("listo").value = pedidoUnico.productoListo;
         document.getElementById("pagado").value = pedidoUnico.pagado;
         document.getElementById("entregado").value = pedidoUnico.entregado;
+        modalProducto.show();
 
         // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola
       } catch (error) {

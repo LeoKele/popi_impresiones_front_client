@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded',async()=>{
+  const modalProducto = new bootstrap.Modal(document.getElementById('modalImagen'));
+
     //* Datos API
     const API_URL = "http://localhost:8080/api/imagenes"; 
     const options = {
@@ -131,7 +133,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
             document.getElementById('id').value = imagenUnica.id;
             document.getElementById('idProducto').value = imagenUnica.idProducto;
             document.getElementById('ruta').value = imagenUnica.imgPath;
-          
+            modalProducto.show();
+
             // manejo de excepciones, levanto la excepcion si hay error y la muestro en consola
         } catch (error) {
             console.error('Error:', error);

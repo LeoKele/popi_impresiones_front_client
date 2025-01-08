@@ -52,32 +52,6 @@
             <h5>A través de este portal podés gestionar tu stock</h5>
         </div>
 
-        <section class="mt-5">
-            <form id="agregarStock" class="row g-3" novalidate>
-                <div class="col-md-6">
-                    <input class="form-control d-none" type="text" name="id" id="id">
-                    <label for="idProducto" class="form-label">ID Producto</label>
-                    <input type="text" id="idProducto" class="form-control" name="idProducto">
-                    <span class="text-secondary">Recordá que el id debe ser de un producto existente.</span><br>
-                    <span class="mensaje-error" id="mensajeId"></span>
-                </div>
-                <div class="col-md-6">
-                    <label for="cantidad" class="form-label">Cantidad</label>
-                    <input type="text" id="cantidad" class="form-control" name="cantidad">
-                    <span class="mensaje-error" id="mensajeCantidad"></span>
-                </div>
-                <div class="col-md-12">
-                    <input type="reset" value="Limpiar campos"  class="btn btn-primary" id="reset">
-                    <button type="submit" class="btn btn-success">Agregar Stock</button>
-                    <p class="d-none mt-2" id="indicador">Modificando...</p>
-                </div>
-            </form>
-            <!-- <div class="mt-5">
-                <h4>Exportar Tabla</h4>
-                <button class="btn btn-primary" id="btnIndex">JSON Index</button>
-                <button type="submit" class="btn btn-primary mx-3" id="btnDetalle">JSON Detalle</button>
-            </div> -->
-        </section>
         <section class="my-5">
             <table class="table table-hover">
                 <thead>
@@ -95,7 +69,39 @@
             </table>
         </section>
     </main>
+    <button class="add-product-button btn-success" id="btnAgregarStock" data-bs-toggle="modal" type="button" data-bs-target="#modalStock">Agregar Stock</button>
     <button class="scroll-top-button btn-submit" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+    <div class="modal fade" id="modalStock" tabindex="-1" aria-labelledby="modalStockLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalStockLabel">Agregar/Modificar Stock</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="agregarStock" class="row g-3" novalidate>
+                        <div class="col-md-6">
+                            <input class="form-control d-none" type="text" name="id" id="id">
+                            <label for="idProducto" class="form-label">ID Producto</label>
+                            <input type="text" id="idProducto" class="form-control" name="idProducto">
+                            <span class="text-secondary">Recordá que el id debe ser de un producto existente.</span><br>
+                            <span class="mensaje-error" id="mensajeId"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="text" id="cantidad" class="form-control" name="cantidad">
+                            <span class="mensaje-error" id="mensajeCantidad"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="reset" value="Limpiar campos" class="btn btn-primary" id="reset">
+                            <button type="submit" class="btn btn-success">Agregar Stock</button>
+                            <p class="d-none mt-2" id="indicador">Modificando...</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         // Función para hacer scroll al principio
         function scrollToTop() {

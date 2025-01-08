@@ -55,10 +55,10 @@ html, body {
 
 /** Boton de scroll to top*/
 .scroll-top-button {
-  z-index: 0;
+  z-index: 1000;
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   background-color: #663399;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: #fff;
@@ -75,6 +75,25 @@ html, body {
 }
 
 .scroll-top-button:hover{
+  background-color: #9a4be9;
+  color: #212529;
+}
+/* Boton de agregar producto */
+.add-product-button {
+  z-index: 1000;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #663399;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-product-button:hover {
   background-color: #9a4be9;
   color: #212529;
 }
