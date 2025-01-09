@@ -86,10 +86,10 @@
                             <span class="mensaje-error" id="mensajeId"></span>
                         </div>
                         <div class="col-md-6">
-                            <label for="ruta" class="form-label">Ruta de Imágen</label>
-                            <input type="text" id="ruta" class="form-control" name="ruta">
-                            <span class="text-secondary">La ruta debe ser "id_num.png", con 'num' de 1 en adelante.</span><br>
-                            <span class="mensaje-error" id="mensajeRuta"></span>
+                          <label for="cantidadImagenes" class="form-label">Cantidad de Imágenes</label>
+                          <input type="number" id="cantidadImagenes" class="form-control" name="cantidadImagenes" min="1" required>
+                          <span class="text-secondary">Indica cuántas imágenes deseas agregar.</span><br>
+                          <span class="mensaje-error" id="mensajeCantidad"></span>
                         </div>
                         <div class="col-md-12">
                             <input type="reset" value="Limpiar campos" class="btn btn-primary" id="reset">

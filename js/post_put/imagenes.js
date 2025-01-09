@@ -2,124 +2,103 @@ const formNuevaImagen = document.getElementById("agregarImagenes");
 
 formNuevaImagen.addEventListener("submit", async (event) => {
   event.preventDefault();
-  var errorId = document.getElementById("mensajeId");
-  var errorRuta = document.getElementById("mensajeRuta");
-  errorRuta.textContent = "";
+
+  // Limpiar mensajes de error
+  const errorId = document.getElementById("mensajeId");
+  const errorCantidad = document.getElementById("mensajeCantidad");
   errorId.textContent = "";
+  errorCantidad.textContent = "";
 
+  // Obtener datos del formulario
   const formData = new FormData(formNuevaImagen);
-  const id = formData.get("id");
-  const idProducto = formData.get("idProducto");
-  const ruta = formData.get("ruta");
+  const idProducto = formData.get("idProducto").trim();
+  const cantidadImagenes = parseInt(formData.get("cantidadImagenes").trim(), 10);
 
-  //comprobamos que no este vacio
-  const idValido = stringVacio(idProducto);
-  const rutaValido = stringVacio(ruta)
-
- 
-
-  if (idValido || rutaValido) {
-    errorId.textContent = !idValido ? "" : "Por favor, completa este campo.";
-    errorRuta.textContent = !rutaValido ? "" : "Por favor, completa este campo";
+  // Validar campos
+  if (!idProducto || isNaN(cantidadImagenes) || cantidadImagenes <= 0) {
+    errorId.textContent = !idProducto ? "Por favor, completa este campo." : "";
+    errorCantidad.textContent = !cantidadImagenes || cantidadImagenes <= 0 
+      ? "Por favor, ingresa un número válido de imágenes." 
+      : "";
     return;
-  } 
-    //* Datos API
+  }
 
-    
-    let url = "http://localhost:8080/api/imagenes";
-    let method = 'POST';
+  // URL y configuración de cabeceras para la API
+  const url = "http://localhost:8080/api/imagenes";
+  const headers = {
+    "Content-Type": "application/json",
+  };
 
-    const imgData = {
-      idProducto: idProducto,
-      imgPath: ruta
-    };
-    if (id){
-      imgData.id = id;
-      method = 'PUT';
+  try {
+    // Verificar si ya existen imágenes para este producto
+    const response = await fetch(`${url}?productoId=${idProducto}`, {
+      method: "GET",
+      headers,
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al consultar imágenes existentes.");
     }
 
-      //Configuramos para la peticion 
-    const options = {
-      method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(imgData),
-    };
+    const imagenesExistentes = await response.json();
+    const rutasExistentes = imagenesExistentes.map((imagen) => imagen.imgPath);
 
+    let maxIndex = 0;
+    rutasExistentes.forEach((ruta) => {
+      const match = ruta.match(new RegExp(`^${idProducto}_(\\d+)\\.png$`));
+      if (match) {
+        maxIndex = Math.max(maxIndex, parseInt(match[1], 10));
+      }
+    });
 
-    try {
-      const response = await fetch(url, options);
-    
-      if (!response.ok) {
-        const errorText = await response.text(); // Obtener el texto del error
-        throw new Error(errorText || 'Error al guardar imagen');
-      }
-    
-      const responseData = await response.json();
-    
-      if (method === 'POST') {
-        if (response.status !== 201) {
-          swal({
-            title: "Error al agregar la imagen.",
-            text: responseData.message || 'Error desconocido', // Mostrar el mensaje de error recibido
-            icon: "error",
-          });
-          throw new Error(responseData.message || 'Error al agregar la imagen.');
-        }
-        swal({
-          title: "Imagen agregada correctamente",
-          icon: "success",
-        }).then((value) => {
-          if (value) {
-            // Recargar la página para ver la imagen agregada
-            location.reload();
-          }
-        });
-      } else {
-        // Si es 200, el producto se modificó correctamente
-        if (response.status !== 200) {
-          swal({
-            title: "Error al modificar la imagen.",
-            text: responseData.message || 'Error desconocido', // Mostrar el mensaje de error recibido
-            icon: "error",
-          });
-          throw new Error(responseData.message || 'Error al modificar la imagen.');
-        }
-        swal({
-          title: "Imagen modificada correctamente",
-          icon: "success",
-        }).then((value) => {
-          if (value) {
-            // Recargar la página para ver la imagen modificada
-            location.reload();
-          }
-        });
-      }
-    
-    } catch (error) {
-      console.log('Error: ', error);
-      swal({
-        title: "Error al agregar la imagen.",
-        text: error.message || "Por favor, inténtelo de nuevo más tarde",
-        icon: "error",
+    if (rutasExistentes.length > 0) {
+      const confirm = await swal({
+        title: "Imágenes existentes",
+        text: `Ya existen ${rutasExistentes.length} imágenes para este producto. ¿Deseas agregar ${cantidadImagenes} nuevas imágenes?`,
+        icon: "info",
+        buttons: ["Cancelar", "Agregar"],
       });
+
+      if (!confirm) {
+        return;
+      }
     }
-    
-    
-  
-});
 
-function stringVacio(string) {
-  if (string === "") return true;
-};
+    // Crear las nuevas imágenes
+    for (let i = 1; i <= cantidadImagenes; i++) {
+      const imgPath = `${idProducto}_${maxIndex + i}.png`;
+      const imgData = {
+        idProducto: idProducto,
+        imgPath: imgPath,
+      };
 
- //limpio campos
- document.getElementById("reset").addEventListener("click", function () {
-  const indicador = document.getElementById('indicador');
-  indicador.classList.add("d-none");
-  var mensajesError = document.querySelectorAll(".mensaje-error");
-  mensajesError.forEach(function (mensaje) {
-    mensaje.textContent = "";
-  });
+      const createResponse = await fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(imgData),
+      });
+
+      if (!createResponse.ok) {
+        const errorText = await createResponse.text();
+        throw new Error(errorText || `Error al guardar la imagen ${imgPath}`);
+      }
+    }
+
+    // Mostrar mensaje de éxito
+    swal({
+      title: "Imágenes agregadas correctamente",
+      text: `Se agregaron ${cantidadImagenes} nuevas imágenes para el producto con ID ${idProducto}.`,
+      icon: "success",
+    }).then(() => {
+      location.reload();
+    });
+
+  } catch (error) {
+    console.error("Error: ", error);
+    swal({
+      title: "Error al agregar imágenes",
+      text: error.message || "Por favor, inténtelo de nuevo más tarde",
+      icon: "error",
+    });
+  }
 });
